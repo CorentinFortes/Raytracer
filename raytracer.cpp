@@ -18,3 +18,17 @@ RayTracer::Ray::Ray(RayTracer::Ray &&other) : vector(Math::Vector3D()), point(Ma
     std::exchange(vector, other.vector);
     std::exchange(point, other.point);
 }
+
+RayTracer::Ray& RayTracer::Ray::operator=(RayTracer::Ray const& other)
+{
+    vector = other.vector;
+    point = other.point;
+    return *this;
+}
+
+RayTracer::Ray& RayTracer::Ray::operator=(RayTracer::Ray &&other)
+{
+    std::exchange(vector, other.vector);
+    std::exchange(point, other.point);
+    return *this;
+}

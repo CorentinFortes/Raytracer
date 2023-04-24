@@ -136,3 +136,19 @@ Math::Point3D::Point3D(Math::Point3D &&other) : x(0), y(0), z(0)
     std::exchange(y, other.y);
     std::exchange(z, other.z);
 }
+
+Math::Point3D& Math::Point3D::operator=(Math::Point3D const& other)
+{
+    x = other.x;
+    y = other.y;
+    z = other.z;
+    return *this;
+}
+
+Math::Point3D& Math::Point3D::operator=(Math::Point3D&& other)
+{
+    x = std::move(other.x);
+    y = std::move(other.y);
+    z = std::move(other.z);
+    return *this;
+}

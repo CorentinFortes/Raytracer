@@ -17,6 +17,8 @@ namespace Math {
         Point3D(double x, double y, double z);
         Point3D(Math::Point3D const& other);
         Point3D(Math::Point3D&& other);
+        Point3D& operator=(Math::Point3D const& other);
+        Point3D& operator=(Math::Point3D&& other);
 
         double x;
         double y;

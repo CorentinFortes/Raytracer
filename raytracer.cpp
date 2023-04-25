@@ -32,3 +32,8 @@ RayTracer::Ray& RayTracer::Ray::operator=(RayTracer::Ray &&other)
     std::exchange(point, other.point);
     return *this;
 }
+
+bool hits(RayTracer::Ray)
+{
+    return true;
+}

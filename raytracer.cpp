@@ -6,6 +6,8 @@
 */
 
 #include "raytracer.hpp"
+#include "Math.hpp"
+#include "math.h"
 
 RayTracer::Ray::Ray() : vector(Math::Vector3D()), point(Math::Point3D()) {}
 

@@ -27,8 +27,8 @@ namespace RayTracer
     {
     public:
         Math::Point3D center;
-        Math::Vector3D radius;
-        Sphere(Math::Point3D center, Math::Vector3D radius);
+        double radius;
+        Sphere(Math::Point3D center, double radius);
         ~Sphere() {};
         bool hits(RayTracer::Ray);
     };

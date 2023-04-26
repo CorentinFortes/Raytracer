@@ -37,3 +37,13 @@ bool hits(RayTracer::Ray)
 {
     return true;
 }
+
+RayTracer::Camera::Camera()
+{
+    origin = Math::Point3D(0, 0, 0);
+}
+
+RayTracer::Ray RayTracer::Camera::ray(double x, double y)
+{
+    return RayTracer::Ray(Math::Vector3D(x/2, y/2, 0) ,Math::Point3D(0, 0, 0));
+}

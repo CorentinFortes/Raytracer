@@ -5,6 +5,7 @@
 ** raytracer.hpp
 */
 
+#include "camera.hpp"
 #include "Math.hpp"
 
 namespace RayTracer
@@ -23,13 +24,24 @@ namespace RayTracer
         Math::Vector3D vector;
         Math::Point3D point;
     };
+
     class Sphere
     {
     public:
         Math::Point3D center;
-        Math::Vector3D radius;
-        Sphere(Math::Point3D center, Math::Vector3D radius);
+        double radius;
+        Sphere(Math::Point3D center, double radius);
         ~Sphere() {};
         bool hits(RayTracer::Ray);
+    };
+
+    class Camera
+    {
+    public:
+        Camera();
+        ~Camera() {};
+        Math::Point3D origin;
+        Rectangle3D screen;
+        RayTracer::Ray ray(double u, double v);
     };
 }

@@ -8,12 +8,13 @@
 #pragma once
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 
 namespace Math {
 
     class Point3D {
         public:
-        Point3D() = default;
+        Point3D();
         Point3D(double x, double y, double z);
         Point3D(Math::Point3D const& other);
         Point3D(Math::Point3D&& other);
@@ -28,7 +29,7 @@ namespace Math {
 
     class Vector3D {
         public:
-        Vector3D() = default;
+        Vector3D();
         Vector3D(double x, double y, double z);
         Vector3D(Math::Vector3D const& other);
         Vector3D(Math::Vector3D&& other);
@@ -54,6 +55,7 @@ namespace Math {
         double x;
         double y;
         double z;
-
+        Point3D p1;
+        Point3D p2;
     };
 }

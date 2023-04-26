@@ -19,7 +19,7 @@ bool RayTracer::Sphere::hits(RayTracer::Ray ray)
     double b = 2 * oc.dot(ray.vector);
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
-    if (discriminant < 0) {
+    if (discriminant <= 0) {
         return false;
     }
     else {

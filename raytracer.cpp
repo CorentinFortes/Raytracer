@@ -7,6 +7,7 @@
 
 #include "raytracer.hpp"
 #include "Math.hpp"
+#include <utility>
 #include "math.h"
 
 RayTracer::Ray::Ray() : vector(Math::Vector3D()), point(Math::Point3D()) {}
@@ -40,9 +41,15 @@ bool hits(RayTracer::Ray)
     return true;
 }
 
-
 RayTracer::Camera::Camera()
 {
+    Rectangle3D screen = Rectangle3D(Math::Point3D(0, 0, 0.5), Math::Vector3D(1, 0, 0), Math::Vector3D (0, 1, 0));
+    origin = Math::Point3D(0, 0, 0);
+}
+
+RayTracer::Camera::Camera(Rectangle3D screen)
+{
+    this->screen = screen;
     origin = Math::Point3D(0, 0, 0);
 }
 

@@ -9,18 +9,19 @@
 
 int main ()
 {
-    RayTracer::Camera cam;
-    RayTracer::Sphere s(RayTracer::Point3D(0 , 0 , -1) , 0.5);
-    for (/* go through the Y axis */) {
-        for (/* go through the X axis */) {
-            double u = /* get a certain amount of X */;
-            double v = /* get a certain amount of Y */;
+    RayTracer::Camera cam;         //  x  y    z
+    RayTracer::Sphere s(Math::Point3D(20, 10 , 100) , 0.5);
+    for (int y = 0; y < 50; y++) {
+        for (int x = 0; x < 120; x++) {
+            double u = x;
+            double v = y;
             RayTracer::Ray r = cam.ray(u, v);
             if (s.hits(r)) {
-            // something
+                printf("*");
             } else {
-            // something else
+                printf(" ");
             }
         }
+        printf("\n");
     }
 }

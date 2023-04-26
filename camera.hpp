@@ -5,6 +5,8 @@
 ** camera.hpp
 */
 
+#pragma once
+
 #include "Math.hpp"
 
 class Rectangle3D {
@@ -16,5 +18,5 @@ class Rectangle3D {
     Rectangle3D() = default;
     Rectangle3D(Math::Point3D origin, Math::Vector3D bottom_side, Math::Vector3D left_side);
     ~Rectangle3D() {};
-    Math::Point3D Rectangle3D::pointAt(double u, double v);
+    Math::Point3D pointAt(double u, double v);
 };

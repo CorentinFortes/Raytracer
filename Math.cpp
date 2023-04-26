@@ -6,12 +6,13 @@
 */
 
 #include "Math.hpp"
+#include <utility>
 
 Math::Vector3D::Vector3D() : x(0), y(0), z(0) {}
 
 Math::Vector3D::Vector3D(Math::Vector3D const& other) : x(other.x), y(other.y), z(other.z) {}
 
-Math::Vector3D::Vector3D(double x, double y, double z) : x(x), y(y), z(z) {}
+Math::Vector3D::Vector3D(double xx, double yy, double zz) : x(xx), y(yy), z(zz) {}
 
 Math::Vector3D::Vector3D(Math::Vector3D &&other) : x(0), y(0), z(0)
 {
@@ -128,7 +129,7 @@ Math::Point3D::Point3D() : x(0), y(0), z(0) {}
 
 Math::Point3D::Point3D(Math::Point3D const& other) : x(other.x), y(other.y), z(other.z) {}
 
-Math::Point3D::Point3D(double x, double y, double z) : x(x), y(y), z(z) {}
+Math::Point3D::Point3D(double xx, double yy, double zz) : x(xx), y(yy), z(zz) {}
 
 Math::Point3D::Point3D(Math::Point3D &&other) : x(0), y(0), z(0)
 {
@@ -150,5 +151,21 @@ Math::Point3D& Math::Point3D::operator=(Math::Point3D&& other)
     x = std::move(other.x);
     y = std::move(other.y);
     z = std::move(other.z);
+    return *this;
+}
+
+Math::Point3D Math::Point3D::operator+(Math::Vector3D const &other)
+{
+    x = x + other.x;
+    y = y + other.y;
+    z = z + other.z;
+    return *this;
+}
+
+Math::Point3D Math::Point3D::operator-(Math::Vector3D const &other)
+{
+    x = x - other.x;
+    y = y - other.y;
+    z = z - other.z;
     return *this;
 }

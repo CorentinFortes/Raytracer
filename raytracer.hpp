@@ -5,7 +5,10 @@
 ** raytracer.hpp
 */
 
+#pragma once
+
 #include "camera.hpp"
+#include <cmath>
 #include "Math.hpp"
 
 namespace RayTracer
@@ -39,6 +42,7 @@ namespace RayTracer
     {
     public:
         Camera();
+        Camera(Rectangle3D screen);
         ~Camera() {};
         Math::Point3D origin;
         Rectangle3D screen;

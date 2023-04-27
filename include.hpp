@@ -6,6 +6,7 @@
 */
 
 #pragma once
+#include <fstream>
 #include "Math.hpp"
 #include "camera.hpp"
 #include "raytracer.hpp"

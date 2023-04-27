@@ -9,19 +9,23 @@
 
 int main ()
 {
+    std::ofstream file("test.ppm");
+    file << "P3" << std::endl;
+    file << 200 << " " << 200 << std::endl;
+    file << 255 << std::endl;
     RayTracer::Camera cam;         //  x  y    z
-    RayTracer::Sphere s(Math::Point3D(20, 10 , 100) , 0.5);
-    for (int y = 0; y < 50; y++) {
-        for (int x = 0; x < 120; x++) {
+    RayTracer::Sphere s(Math::Point3D(40, 50 , 100) , 0.5);
+    for (int y = 0; y < 200; y++) {
+        for (int x = 0; x < 200; x++) {
             double u = x;
             double v = y;
             RayTracer::Ray r = cam.ray(u, v);
             if (s.hits(r)) {
-                printf("*");
+                file << 255 << " " << 0 << " " << 0 << " ";
             } else {
-                printf(" ");
+                file << 255 << " " << 255 << " " << 255 << " ";
             }
         }
-        printf("\n");
+        file << std::endl;
     }
 }

@@ -11,5 +11,6 @@
 #include "Math.hpp"
 #include "camera.hpp"
 #include "raytracer.hpp"
+#include <libconfig.h++>
 #include "IShape.hpp"
 #include "Shape.hpp"

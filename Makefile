@@ -9,7 +9,7 @@ NAME = raytracer
 SRC =	*.cpp
 OBJ = $(SRC:.cpp=.o)
 $(NAME) :
-		 g++ -o $(NAME) $(SRC) -g -std=c++20 -Wall -Werror
+		 g++ -o $(NAME) $(SRC) -L -g -std=c++20 -lconfig++ -I /opt/homebrew/Cellar/libconfig/1.7.3/include -L /opt/homebrew/Cellar/libconfig/1.7.3/lib
 		 rm -fr *.dSYM
 
 all : $(NAME)

@@ -23,6 +23,7 @@ namespace Math {
         ~Vector3D() {};
         double length() const;
         double dot(Math::Vector3D const& other) const;
+        void translate(Math::Vector3D v);
 
         Vector3D& operator=(Math::Vector3D const& other);
         Vector3D& operator=(Math::Vector3D&& other);

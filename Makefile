@@ -6,18 +6,26 @@
 ##
 
 NAME = raytracer
-SRC =	*.cpp
+SRC = *.cpp
 OBJ = $(SRC:.cpp=.o)
-$(NAME) :
-		 g++ -o $(NAME) $(SRC) -L -g -std=c++20 -lconfig++ -I /opt/homebrew/Cellar/libconfig/1.7.3/include -L /opt/homebrew/Cellar/libconfig/1.7.3/lib
-		 rm -fr *.dSYM
+UNAME := $(shell uname)
 
-all : $(NAME)
+ifeq ($(UNAME), Darwin)
+    MAC_FLAGS = -I /opt/homebrew/Cellar/libconfig/1.7.3/include -L /opt/homebrew/Cellar/libconfig/1.7.3/lib
+else
+    MAC_FLAGS =
+endif
 
-clean :
-		 rm -f $(OBJ)
+$(NAME):
+	g++ -o $(NAME) $(SRC) -L -g -std=c++20 -lconfig++ $(MAC_FLAGS)
+	rm -fr *.dSYM
 
-fclean : clean
-		 rm -f $(NAME)
+all: $(NAME)
 
-re :	 fclean all
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all

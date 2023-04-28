@@ -7,7 +7,9 @@
 
 #pragma once
 #include <fstream>
+#include <memory>
 #include "Math.hpp"
 #include "camera.hpp"
 #include "raytracer.hpp"
-
+#include "IShape.hpp"
+#include "Shape.hpp"

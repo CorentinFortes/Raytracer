@@ -5,13 +5,13 @@
 ** sphere
 */
 
-#include "raytracer.hpp"
+#include "Shape.hpp"
 
-RayTracer::Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(radius)
+Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(radius)
 {
 }
 
-bool RayTracer::Sphere::hits(RayTracer::Ray ray)
+bool Sphere::hits(RayTracer::Ray ray)
 {
     Math::Vector3D x(center.x, center.y, center.z);
     Math::Vector3D oc = ray.vector - x;
@@ -25,4 +25,11 @@ bool RayTracer::Sphere::hits(RayTracer::Ray ray)
     else {
         return true;
     }
+}
+
+Plane::Plane(double y, char a) : coo(y), axis(a) {}
+
+bool Plane::hits(RayTracer::Ray ray)
+{
+    
 }

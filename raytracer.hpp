@@ -28,16 +28,6 @@ namespace RayTracer
         Math::Point3D point;
     };
 
-    class Sphere
-    {
-    public:
-        Math::Point3D center;
-        double radius;
-        Sphere(Math::Point3D center, double radius);
-        ~Sphere() {};
-        bool hits(RayTracer::Ray);
-    };
-
     class Camera
     {
     public:

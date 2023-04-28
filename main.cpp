@@ -14,16 +14,16 @@ int main ()
     file << 200 << " " << 200 << std::endl;
     file << 255 << std::endl;
     RayTracer::Camera cam;         //  x  y    z
-    RayTracer::Sphere s(Math::Point3D(40, 50 , 100) , 0.5);
+    std::unique_ptr<IShape> s = std::make_unique<Sphere>(Math::Point3D(70, 70, 100), 0.5);
     for (int y = 0; y < 200; y++) {
         for (int x = 0; x < 200; x++) {
             double u = x;
             double v = y;
             RayTracer::Ray r = cam.ray(u, v);
-            if (s.hits(r)) {
+            if (s->hits(r)) {
                 file << 255 << " " << 0 << " " << 0 << " ";
             } else {
-                file << 255 << " " << 255 << " " << 255 << " ";
+                file << 150 << " " << 150 << " " << 255 << " ";
             }
         }
         file << std::endl;

@@ -13,7 +13,7 @@ UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
     MAC_FLAGS = -I /opt/homebrew/Cellar/libconfig/1.7.3/include -L /opt/homebrew/Cellar/libconfig/1.7.3/lib
 else
-    MAC_FLAGS =
+    MAC_FLAGS = -I /usr/include/libconfig -L /usr/lib/x86_64-linux-gnu
 endif
 
 $(NAME):

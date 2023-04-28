@@ -36,15 +36,16 @@ RayTracer::Ray& RayTracer::Ray::operator=(RayTracer::Ray &&other)
     return *this;
 }
 
-bool hits(RayTracer::Ray)
-{
-    return true;
-}
-
 RayTracer::Camera::Camera()
 {
     Rectangle3D screen = Rectangle3D(Math::Point3D(0, 0, 0.5), Math::Vector3D(1, 0, 0), Math::Vector3D (0, 1, 0));
     origin = Math::Point3D(0, 0, 0);
+}
+
+RayTracer::Camera::Camera(Math::Point3D o, double w, double h)
+{
+    screen = Rectangle3D(Math::Point3D((w/2)*(-1), (h/2)*(-1), 0.5), Math::Vector3D(w, 0, 0), Math::Vector3D (0, h, 0));
+    origin = o;
 }
 
 RayTracer::Camera::Camera(Rectangle3D screen)
@@ -55,5 +56,5 @@ RayTracer::Camera::Camera(Rectangle3D screen)
 
 RayTracer::Ray RayTracer::Camera::ray(double x, double y)
 {
-    return RayTracer::Ray(Math::Vector3D(x/2, y/2, 0) ,Math::Point3D(0, 0, 0));
+    return RayTracer::Ray(Math::Vector3D(x + screen.origin.x - origin.x, y + screen.origin.y - origin.y, screen.origin.z - origin.z) , origin);
 }

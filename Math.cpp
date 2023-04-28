@@ -125,6 +125,13 @@ double Math::Vector3D::dot(Math::Vector3D const& other) const
     return x * other.x + y * other.y + z * other.z;
 }
 
+void Math::Vector3D::translate(Math::Vector3D v)
+{
+    x += v.x;
+    y += v.y;
+    z += v.z;
+}
+
 Math::Point3D::Point3D() : x(0), y(0), z(0) {}
 
 Math::Point3D::Point3D(Math::Point3D const& other) : x(other.x), y(other.y), z(other.z) {}

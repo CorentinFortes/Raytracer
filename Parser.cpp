@@ -19,26 +19,40 @@ std::unique_ptr<RayTracer::Camera> Parser::getCamera()
     double cam_x = cfg.lookup("camera.position.x");
     double cam_y = cfg.lookup("camera.position.y");
     double cam_z = cfg.lookup("camera.position.z");
-    std::cout << "cam_x: " << cam_x << std::endl;
-    std::cout << "cam_y: " << cam_y << std::endl;
-    std::cout << "cam_z: " << cam_z << std::endl;
-    std::cout << "camera_width: " << camera_width << std::endl;
-    std::cout << "camera_height: " << camera_height << std::endl;
     std::unique_ptr<RayTracer::Camera> cam(new RayTracer::Camera(Math::Point3D(cam_x, cam_y, cam_z), camera_width, camera_height));
     return cam;
 }
 
-std::unique_ptr<IShape> Parser::getShape(std::string name)
+void Parser::getShape(std::string name)
 {
-    // if (name.find("spheres") == std::string::npos) {
-    //     double x = cfg.lookup("spheres.x");
-    //     double y = cfg.lookup("spheres.y");
-    //     double z = cfg.lookup("spheres.z");
-    //     double radius = cfg.lookup("spheres.r");
-    //     std::unique_ptr<IShape> shape(new Sphere(Math::Point3D(x, y, z), radius));
-    //     return shape;
-    // }
-    return nullptr;
+    std::string line;
+    std::ifstream inFile;
+    inFile.open(path);
+    while (line.find("lights") == std::string::npos) {
+        std::getline(inFile, line);
+        if (line.find("spheres") != std::string::npos) {
+            const libconfig::Setting& spheres = cfg.lookup("shapes.spheres");
+            for (int i = 0; i < spheres.getLength(); ++i) {
+                const libconfig::Setting& sphere = spheres[i];
+                double x = sphere["x"];
+                double y = sphere["y"];
+                double z = sphere["z"];
+                int r = sphere["radius"];
+                std::unique_ptr<IShape> shape(new Sphere(Math::Point3D(x, y, z), r));
+                shapes.insert(std::pair<std::string, std::unique_ptr<IShape>>("sphere" + std::to_string(i), std::move(shape)));
+            }
+        }
+        if (line.find("planes") != std::string::npos) {
+            // const libconfig::Setting& spheres = cfg.lookup("shapes.planes");
+            // for (int i = 0; i < spheres.getLength(); ++i) {
+            //     const libconfig::Setting& sphere = spheres[i];
+            //     char axis = sphere["axis"];
+            //     double pos = sphere["position"];
+            //     std::unique_ptr<IShape> shape(new Plane(pos, axis));
+            //     shapes.insert(std::pair<std::string, std::unique_ptr<IShape>>("plane" + std::to_string(i), std::move(shape)));
+            // }
+        }
+    }
 }
 
 void Parser::parsing()
@@ -48,13 +62,8 @@ void Parser::parsing()
     while (!inFile.eof()) {
         std::string line;
         std::getline(inFile, line);
-        std::cout << line << std::endl;
-        std::unique_ptr<IShape> shape = getShape(line);
-        if (shape != nullptr)
-            shapes.insert(std::pair<std::string, std::unique_ptr<IShape>>(line, std::move(shape)));
+        if (line.find("shapes") != std::string::npos)
+            getShape(line);
     }
     inFile.close();
-    for (auto &shape : shapes) {
-        std::cout << shape.first << std::endl;
-    }
 }

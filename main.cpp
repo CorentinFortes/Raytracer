@@ -20,13 +20,13 @@ int main ()
     std::unique_ptr<IShape> s = std::make_unique<Sphere>(Math::Point3D(100, 100, 50), 0.5);
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
-            double u = x;
-            double v = y;
-            RayTracer::Ray r = cam->ray(u, v);
-            if (s->hits(r)) {
-                file << 255 << " " << 0 << " " << 0 << " ";
-            } else {
-                file << 150 << " " << 150 << " " << 255 << " ";
+            RayTracer::Ray r = cam->ray(x, y);
+            for (auto& shape : parser.shapes) {
+                if (shape.second->hits(r)) {
+                    file << 255 << " " << 0 << " " << 0 << " ";
+                } else {
+                    file << 150 << " " << 150 << " " << 255 << " ";
+                }
             }
         }
         file << std::endl;

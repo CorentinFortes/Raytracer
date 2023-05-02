@@ -17,7 +17,7 @@ else
 endif
 
 $(NAME):
-	g++ -o $(NAME) $(SRC) -L -g -std=c++20 -lconfig++ $(MAC_FLAGS)
+	g++ -o $(NAME) $(SRC) -g -std=c++20 -lconfig++ $(MAC_FLAGS)
 	rm -fr *.dSYM
 
 all: $(NAME)

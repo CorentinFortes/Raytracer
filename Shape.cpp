@@ -13,13 +13,18 @@ Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(rad
 
 bool Sphere::hits(RayTracer::Ray ray)
 {
-    Math::Vector3D x(center.x, center.y, center.z);
-    Math::Vector3D oc = ray.vector - x;
+    Math::Vector3D oc = ray.vector - center;
     double a = oc.dot(ray.vector);
     double b = 2 * oc.dot(ray.vector);
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
     if (discriminant <= 0) {
+        return false;
+    }
+    double rassine = sqrt(discriminant);
+    double t1 = (-b - rassine) / (2.0 * a);
+    double t2 = (-b + rassine) / (2.0 * a);
+    if (t1 < 0.0 && t2 < 0.0) {
         return false;
     }
     else {
@@ -31,5 +36,5 @@ Plane::Plane(double y, char a) : coo(y), axis(a) {}
 
 bool Plane::hits(RayTracer::Ray ray)
 {
-    
+    return true;
 }

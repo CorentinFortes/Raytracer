@@ -6,12 +6,12 @@
 */
 
 #pragma once
+#include "raytracer.hpp"
+#include "Math.hpp"
 
-class IShape
-{
-public:
-    IShape(/* args */) = default;
-    ~IShape() = default;
+class IShape {
+    public:
+    virtual ~IShape() = default;
     virtual bool hits(RayTracer::Ray) = 0;
 };
 

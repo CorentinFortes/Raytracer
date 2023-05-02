@@ -33,10 +33,11 @@ namespace RayTracer
     public:
         Camera();
         Camera(Math::Point3D o, double w, double h);
-        Camera(Rectangle3D screen);
         ~Camera() {};
         Math::Point3D origin;
         Rectangle3D screen;
+        int width;
+        int height;
         RayTracer::Ray ray(double u, double v);
     };
 }

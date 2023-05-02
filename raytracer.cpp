@@ -40,18 +40,14 @@ RayTracer::Camera::Camera()
 {
     Rectangle3D screen = Rectangle3D(Math::Point3D(0, 0, 0.5), Math::Vector3D(1, 0, 0), Math::Vector3D (0, 1, 0));
     origin = Math::Point3D(0, 0, 0);
+    width = 1; height = 1;
 }
 
 RayTracer::Camera::Camera(Math::Point3D o, double w, double h)
 {
     screen = Rectangle3D(Math::Point3D((w/2)*(-1), (h/2)*(-1), 0.5), Math::Vector3D(w, 0, 0), Math::Vector3D (0, h, 0));
     origin = o;
-}
-
-RayTracer::Camera::Camera(Rectangle3D screen)
-{
-    this->screen = screen;
-    origin = Math::Point3D(0, 0, 0);
+    width = w; height = h;
 }
 
 RayTracer::Ray RayTracer::Camera::ray(double x, double y)

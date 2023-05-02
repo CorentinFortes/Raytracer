@@ -21,6 +21,12 @@ bool Sphere::hits(RayTracer::Ray ray)
     if (discriminant <= 0) {
         return false;
     }
+    double rassine = sqrt(discriminant);
+    double t1 = (-b - rassine) / (2.0 * a);
+    double t2 = (-b + rassine) / (2.0 * a);
+    if (t1 < 0.0 && t2 < 0.0) {
+        return false;
+    }
     else {
         return true;
     }

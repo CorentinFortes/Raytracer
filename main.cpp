@@ -21,7 +21,7 @@ int main ()
     file << camera_width << " " << camera_height << std::endl;
     file << 255 << std::endl;
     RayTracer::Camera cam(Math::Point3D(0, 0, 0), 1920, 1080);
-    std::unique_ptr<IShape> s = std::make_unique<Sphere>(Math::Point3D(10, 100, 50), 0.5);
+    std::unique_ptr<IShape> s = std::make_unique<Sphere>(Math::Point3D(1000, 100, 50), 20);
     for (int y = 0; y < camera_height; y++) {
         for (int x = 0; x < camera_width; x++) {
             double u = x;

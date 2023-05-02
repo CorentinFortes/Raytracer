@@ -16,10 +16,16 @@
 #include <sstream>
 #include <iomanip>
 #include <map>
-#include "Math.hpp"
-#include "camera.hpp"
-#include "raytracer.hpp"
+// #include "Math.hpp"
+// #include "camera.hpp"
+// #include "raytracer.hpp"
 #include <libconfig.h++>
-#include "IShape.hpp"
-#include "Shape.hpp"
+// #include "IShape.hpp"
+// #include "Shape.hpp"
+// #include "Point3D.hpp"
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+
+
 #include "Parser.hpp"

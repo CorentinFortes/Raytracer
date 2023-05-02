@@ -7,9 +7,11 @@
 
 #pragma once
 
-#include "camera.hpp"
-#include <cmath>
+#include "include.hpp"
 #include "Math.hpp"
+#include "Point3D.hpp"
+#include "camera.hpp"
+#include "Shape.hpp"
 
 namespace RayTracer
 {
@@ -18,6 +20,8 @@ namespace RayTracer
     public:
         Ray();
         Ray(Math::Vector3D vector, Math::Point3D point);
+        // Math::Vector3D is considered as an error type, why?
+        // because it's not a pointer, it's a reference
         Ray(Ray const& other); //cpy
         Ray(Ray&& other); //mv
 

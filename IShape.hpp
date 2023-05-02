@@ -9,6 +9,10 @@
 #include "raytracer.hpp"
 #include "Math.hpp"
 
+namespace RayTracer {
+    class Ray;
+}
+
 class IShape {
     public:
     virtual ~IShape() = default;

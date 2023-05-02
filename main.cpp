@@ -6,6 +6,7 @@
 */
 
 #include "raytracer.hpp"
+#include "Parser.hpp"
 
 int main ()
 {

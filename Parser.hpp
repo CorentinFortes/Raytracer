@@ -6,22 +6,8 @@
 */
 
 #pragma once
-#include "IShape.hpp"
-#include "Shape.hpp"
-#include "Math.hpp"
-#include "camera.hpp"
 #include "raytracer.hpp"
-#include <libconfig.h++>
-#include <fstream>
-#include <memory>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <cmath>
-#include <algorithm>
-#include <sstream>
-#include <iomanip>
-#include <map>
+#include "IShape.hpp"
 
 class Parser {
     public:

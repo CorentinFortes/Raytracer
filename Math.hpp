@@ -6,14 +6,16 @@
 */
 
 #pragma once
-#include <iostream>
-#include <algorithm>
-#include <cmath>
+#include "include.hpp"
+#include "Point3D.hpp"
 
 // Math::Point3D;
 
 namespace Math {
+    class Point3D;
+}
 
+namespace Math {
     class Vector3D {
         public:
         Vector3D();
@@ -30,6 +32,7 @@ namespace Math {
         Vector3D operator+(Math::Vector3D const& other);
         Vector3D operator+=(Math::Vector3D const& other);
         Vector3D operator-(Math::Vector3D const& other);
+        Vector3D operator-(Math::Point3D const& other);
         Vector3D operator-=(Math::Vector3D const& other);
         Vector3D operator*(Math::Vector3D const& other);
         Vector3D operator*=(Math::Vector3D const& other);
@@ -45,19 +48,4 @@ namespace Math {
         double z;
     };
 
-    class Point3D {
-        public:
-        Point3D();
-        Point3D(double x, double y, double z);
-        Point3D(Math::Point3D const& other);
-        Point3D(Math::Point3D&& other);
-        ~Point3D() {};
-        Point3D& operator=(Math::Point3D const& other);
-        Point3D& operator=(Math::Point3D&& other);
-        Point3D operator+(Math::Vector3D const &other);
-        Point3D operator-(Math::Vector3D const &other);
-        double x;
-        double y;
-        double z;
-    };
 }

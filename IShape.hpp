@@ -7,6 +7,10 @@
 
 #pragma once
 
+namespace RayTracer {
+    class Ray;
+}
+
 class IShape
 {
 public:

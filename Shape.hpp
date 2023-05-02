@@ -8,6 +8,14 @@
 #pragma once
 
 #include "include.hpp"
+#include "IShape.hpp"
+#include "Math.hpp"
+#include "Point3D.hpp"
+#include "raytracer.hpp"
+
+namespace RayTracer {
+    class Ray;
+}
 
 class Sphere : public IShape
 {

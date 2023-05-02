@@ -60,6 +60,11 @@ Math::Vector3D Math::Vector3D::operator-(Math::Vector3D const& other)
     return Math::Vector3D(x - other.x, y - other.y, z - other.z);
 }
 
+Math::Vector3D Math::Vector3D::operator-(Math::Point3D const& other)
+{
+    return Math::Vector3D(x - other.x, y - other.y, z - other.z);
+}
+
 Math::Vector3D Math::Vector3D::operator-=(Math::Vector3D const& other)
 {
     x -= other.x;

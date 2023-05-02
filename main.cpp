@@ -5,7 +5,7 @@
 ** main.cpp
 */
 
-#include "include.hpp"
+#include "raytracer.hpp"
 
 int main ()
 {

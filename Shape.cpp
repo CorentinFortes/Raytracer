@@ -9,16 +9,17 @@
 
 Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(radius)
 {
+
 }
 
 bool Sphere::hits(RayTracer::Ray ray)
 {
-    Math::Vector3D oc = ray.vector - center;
-    double a = oc.dot(ray.vector);
+    Math::Vector3D oc = ray.point - center;
+    double a = ray.vector.dot(ray.vector);
     double b = 2 * oc.dot(ray.vector);
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
-    if (discriminant <= 0) {
+    if (discriminant < 0) {
         return false;
     }
     double rassine = sqrt(discriminant);

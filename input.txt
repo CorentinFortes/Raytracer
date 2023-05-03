@@ -1,6 +1,6 @@
 camera :
 {
-    resolution = { width = 1920; height = 1080; };
+    resolution = { width = 400; height = 400; };
     position = { x = 0.0; y = 0.0; z = 0.0; };
     rotation = { x = 0; y = 0; z = 0; };
     fieldOfView = 72.0; # In degree
@@ -8,11 +8,11 @@ camera :
 shapes :
 {
     spheres = (
-    #{ x = 1.0; y = 1.0; z = 800.0; radius = 0.001; color = { r = 255; g = 64; b = 64; }; } ,
-    # { x = -40.0; y = 20.0; z = 100.0; radius = 1.0; color = { r = 64; g = 255; b = 64; }; }
+    { x = 1.0; y = 1.0; z = 5.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } ,
+    { x = -40.0; y = 20.0; z = 100.0; radius = 1.0; color = { r = 64; g = 255; b = 64; }; }
 ) ;
     planes = (
-    { axis = "y"; position = 0.0; color = { r = 64; g = 64; b = 255; }; }
+    { axis = "z"; position = 1.0; color = { r = 64; g = 64; b = 255; }; }
     ) ;
 };
 lights :

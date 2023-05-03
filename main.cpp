@@ -19,8 +19,8 @@ int main ()
     file << 255 << std::endl;
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
-            double u = (double)x / (double)cam->width;
-            double v = (double)y / (double)cam->height;
+            double u = (double)x / (double)(cam->width - 1);
+            double v = (double)y / (double)(cam->height - 1);
             RayTracer::Ray r = cam->ray(u, v);
             int t = 0;
             for (auto &shape : parser.shapes) {

@@ -45,7 +45,7 @@ RayTracer::Camera::Camera()
 
 RayTracer::Camera::Camera(Math::Point3D o, double w, double h)
 {
-    screen = Rectangle3D(Math::Point3D(-0.5, -0.5, 1), Math::Vector3D(1, 0, 0), Math::Vector3D (0, 1, 0));
+    screen = Rectangle3D(Math::Point3D(-0.5 + o.x, -0.5 + o.y, 1 + o.z), Math::Vector3D(1, 0, 0), Math::Vector3D (0, 1, 0));
     origin = o;
     width = w; height = h;
 }

@@ -26,6 +26,7 @@ namespace Math {
         Point3D& operator=(Math::Point3D&& other);
         Point3D operator+(Math::Vector3D const &other);
         Point3D operator-(Math::Vector3D const &other);
+        Vector3D operator-(Math::Point3D const &other);
         double x;
         double y;
         double z;

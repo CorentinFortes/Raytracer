@@ -127,7 +127,11 @@ Math::Vector3D Math::Vector3D::operator/=(double value)
 
 double Math::Vector3D::dot(Math::Vector3D const& other) const
 {
-    return x * other.x + y * other.y + z * other.z;
+    double nx, ny, nz;
+    nx = x * other.x;
+    ny = y * other.y;
+    nz = z * other.z;
+    return (nx + ny + nz);
 }
 
 void Math::Vector3D::translate(Math::Vector3D v)
@@ -180,4 +184,9 @@ Math::Point3D Math::Point3D::operator-(Math::Vector3D const &other)
     y = y - other.y;
     z = z - other.z;
     return *this;
+}
+
+Math::Vector3D Math::Point3D::operator-(Math::Point3D const &other)
+{
+    return Math::Vector3D(x - other.x, y - other.y, z - other.z);
 }

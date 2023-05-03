@@ -28,9 +28,8 @@ bool Sphere::hits(RayTracer::Ray ray)
     if (t1 < 0.0 && t2 < 0.0) {
         return false;
     }
-    else {
+    else
         return true;
-    }
 }
 
 Plane::Plane(double y, char a) : coo(y), axis(a) {}

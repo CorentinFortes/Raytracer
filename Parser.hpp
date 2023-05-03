@@ -19,6 +19,7 @@ class Parser {
 
 
     libconfig::Config cfg;
+    int n = 0;
     std::string path;
     std::map<int, std::unique_ptr<IShape>> shapes;
 };

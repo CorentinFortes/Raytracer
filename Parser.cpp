@@ -37,9 +37,9 @@ void Parser::getShape(std::string name)
                 double x = sphere["x"];
                 double y = sphere["y"];
                 double z = sphere["z"];
-                int r = sphere["radius"];
+                double r = sphere["radius"];
                 std::unique_ptr<IShape> shape(new Sphere(Math::Point3D(x, y, z), r));
-                shapes.insert(std::pair<std::string, std::unique_ptr<IShape>>("sphere" + std::to_string(i), std::move(shape)));
+                shapes.insert(std::pair<int, std::unique_ptr<IShape>>(i, std::move(shape)));
             }
         }
         if (line.find("planes") != std::string::npos) {
@@ -49,7 +49,7 @@ void Parser::getShape(std::string name)
             //     char axis = sphere["axis"];
             //     double pos = sphere["position"];
             //     std::unique_ptr<IShape> shape(new Plane(pos, axis));
-            //     shapes.insert(std::pair<std::string, std::unique_ptr<IShape>>("plane" + std::to_string(i), std::move(shape)));
+            //     shapes.insert(std::pair<int, std::unique_ptr<IShape>>(i, std::move(shape)));
             // }
         }
     }

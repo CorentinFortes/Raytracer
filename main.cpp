@@ -26,13 +26,13 @@ int main ()
             for (auto &shape : parser.shapes) {
                 t = 0;
                 if (shape.second->hits(r)) {
-                    file << 255 << " " << 64 << " " << 64 << " ";
+                    shape.second->printColor(&file);
                     t = 1;
                     break;
                 }
             }
             if (t == 0)
-                file << 150 << " " << 150 << " " << 255 << " ";
+                file << 150 << " " << 150 << " " << 255 << std::endl;
         }
         file << std::endl;
     }

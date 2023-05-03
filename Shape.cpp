@@ -7,10 +7,7 @@
 
 #include "Shape.hpp"
 
-Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(radius)
-{
-
-}
+Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(radius) {}
 
 bool Sphere::hits(RayTracer::Ray ray)
 {

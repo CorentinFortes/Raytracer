@@ -7,6 +7,7 @@
 
 #pragma once
 #include "raytracer.hpp"
+
 #include "IShape.hpp"
 
 class Parser {

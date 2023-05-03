@@ -17,5 +17,6 @@ class IShape {
     public:
     virtual ~IShape() = default;
     virtual bool hits(RayTracer::Ray) = 0;
+    virtual void printColor(std::ofstream *) = 0;
+    virtual void setColor(int r, int g, int b) = 0;
 };
-

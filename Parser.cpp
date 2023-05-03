@@ -7,6 +7,8 @@
 
 #include "Parser.hpp"
 
+#include "Shape.hpp"
+
 Parser::Parser(std::string path) : path(path)
 {
     cfg.readFile(path.c_str());
@@ -38,9 +40,13 @@ void Parser::getShape(std::string name)
                 double y = sphere["y"];
                 double z = sphere["z"];
                 double r = sphere["radius"];
+                const libconfig::Setting& color = sphere["color"];
+                int r_ = color["r"];
+                int g_ = color["g"];
+                int b_ = color["b"];
                 std::unique_ptr<IShape> shape(new Sphere(Math::Point3D(x, y, z), r));
+                shape->setColor(r_, g_, b_);
                 shapes.insert(std::pair<int, std::unique_ptr<IShape>>(n, std::move(shape)));
-                std::cout << "add sphere" << std::endl;
                 n++;
             }
         }
@@ -51,9 +57,13 @@ void Parser::getShape(std::string name)
                 std::string axis = sphere["axis"];
                 char c = axis[0];
                 double pos = sphere["position"];
+                const libconfig::Setting& color = sphere["color"];
+                int r_ = color["r"];
+                int g_ = color["g"];
+                int b_ = color["b"];
                 std::unique_ptr<IShape> shape(new Plane(pos, c));
+                shape->setColor(r_, g_, b_);
                 shapes.insert(std::pair<int, std::unique_ptr<IShape>>(n, std::move(shape)));
-                std::cout << "add plane" << std::endl;
                 n++;
             }
         }

@@ -43,14 +43,15 @@ void Parser::getShape(std::string name)
             }
         }
         if (line.find("planes") != std::string::npos) {
-            // const libconfig::Setting& spheres = cfg.lookup("shapes.planes");
-            // for (int i = 0; i < spheres.getLength(); ++i) {
-            //     const libconfig::Setting& sphere = spheres[i];
-            //     char axis = sphere["axis"];
-            //     double pos = sphere["position"];
-            //     std::unique_ptr<IShape> shape(new Plane(pos, axis));
-            //     shapes.insert(std::pair<int, std::unique_ptr<IShape>>(i, std::move(shape)));
-            // }
+            const libconfig::Setting& spheres = cfg.lookup("shapes.planes");
+            for (int i = 0; i < spheres.getLength(); ++i) {
+                const libconfig::Setting& sphere = spheres[i];
+                std::string axis = sphere["axis"];
+                char c = axis[0];
+                double pos = sphere["position"];
+                std::unique_ptr<IShape> shape(new Plane(pos, c));
+                shapes.insert(std::pair<int, std::unique_ptr<IShape>>(i, std::move(shape)));
+            }
         }
     }
 }

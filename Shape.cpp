@@ -36,5 +36,26 @@ Plane::Plane(double y, char a) : coo(y), axis(a) {}
 
 bool Plane::hits(RayTracer::Ray ray)
 {
-    return true;
+    if (axis == 'x') {
+        double value = (coo - ray.point.x);
+        if (std::abs(value) < std::abs(value + ray.vector.x))
+            return false;
+        else
+            return true;
+    }
+    if (axis == 'y') {
+        double value = (coo - ray.point.y);
+        if (std::abs(value) < std::abs(value + ray.vector.y))
+            return false;
+        else
+            return true;
+    }
+    if (axis == 'z') {
+        double value = (coo - ray.point.z);
+        if (std::abs(value) < std::abs(value + ray.vector.z))
+            return false;
+        else
+            return true;
+    }
+    return false;
 }

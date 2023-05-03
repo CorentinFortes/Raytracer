@@ -19,12 +19,14 @@ int main ()
     file << 255 << std::endl;
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
-            RayTracer::Ray r = cam->ray(x, y);
+            double u = (double)x / (double)cam->width;
+            double v = (double)y / (double)cam->height;
+            RayTracer::Ray r = cam->ray(u, v);
             int t = 0;
             for (auto &shape : parser.shapes) {
                 t = 0;
                 if (shape.second->hits(r)) {
-                    file << 255 << " " << 0 << " " << 0 << " ";
+                    file << 255 << " " << 64 << " " << 64 << " ";
                     t = 1;
                     break;
                 }

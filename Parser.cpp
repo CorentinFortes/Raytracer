@@ -57,6 +57,22 @@ void Parser::getShape(std::string name)
                 n++;
             }
         }
+        if (line.find("cylindres") != std::string::npos) {
+            const libconfig::Setting& spheres = cfg.lookup("shapes.cylindres");
+            for (int i = 0; i < spheres.getLength(); ++i) {
+                const libconfig::Setting& sphere = spheres[i];
+                double x = sphere["x"];
+                double y = sphere["y"];
+                double z = sphere["z"];
+                double r = sphere["radius"];
+                std::string axis = sphere["axis"];
+                char c = axis[0];
+                std::unique_ptr<IShape> shape(new Cylindre(Math::Point3D(x, y, z), r, c));
+                shapes.insert(std::pair<int, std::unique_ptr<IShape>>(n, std::move(shape)));
+                std::cout << "add cylindre" << std::endl;
+                n++;
+            }
+        }
     }
 }
 

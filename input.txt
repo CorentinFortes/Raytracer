@@ -8,12 +8,17 @@ camera :
 shapes :
 {
     spheres = (
-    { x = 1.0; y = 1.0; z = 5.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } ,
+    { x = -1.0; y = 1.0; z = 5.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } ,
     { x = 1.0; y = 20.0; z = 100.0; radius = 10.0; color = { r = 64; g = 255; b = 64; }; }
 ) ;
     planes = (
-    { axis = "y"; position = 1.0; color = { r = 64; g = 64; b = 255; }; }
+    # { axis = "y"; position = 1.0; color = { r = 64; g = 64; b = 255; }; }
     ) ;
+
+    cylindres = (
+    #    { x = 1.0; y = 1.0; z = 20.0; radius = 1.0; axis = "y"; color = { r = 255; g = 64; b = 64; }; } ,
+        { x = 0.5; y = 0.5; z = 30.0; radius = 1.0; axis = "y"; color = { r = 255; g = 64; b = 64; }; }
+    )
 };
 lights :
 {

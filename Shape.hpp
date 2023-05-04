@@ -8,7 +8,7 @@
 #pragma once
 
 #include "include.hpp"
-#include "IShape.hpp"
+#include "AShape.hpp"
 #include "Math.hpp"
 #include "Point3D.hpp"
 #include "raytracer.hpp"
@@ -17,7 +17,7 @@ namespace RayTracer {
     class Ray;
 }
 
-class Sphere : public IShape
+class Sphere : public AShape
 {
 public:
     Math::Point3D center;
@@ -27,7 +27,7 @@ public:
     bool hits(RayTracer::Ray) override;
 };
 
-class Plane : public IShape
+class Plane : public AShape
 {
 public:
     Plane(double y, char axis);

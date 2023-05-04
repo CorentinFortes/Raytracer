@@ -11,7 +11,6 @@
 #include "Math.hpp"
 #include "Point3D.hpp"
 #include "camera.hpp"
-#include "Shape.hpp"
 
 namespace RayTracer
 {

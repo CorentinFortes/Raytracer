@@ -12,7 +12,7 @@ class AShape : public IShape {
     AShape() {};
     ~AShape() {};
     virtual bool hits(RayTracer::Ray) = 0;
-    void printColor(std::ofstream *file);
+    void printColor(std::ofstream *file, double pourcent);
     void setColor(int r, int g, int b);
     int color_r;
     int color_g;

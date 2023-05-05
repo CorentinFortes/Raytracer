@@ -77,7 +77,12 @@ void Parser::getShape(std::string name)
                 double r = sphere["radius"];
                 std::string axis = sphere["axis"];
                 char c = axis[0];
+                const libconfig::Setting& color = sphere["color"];
+                int r_ = color["r"];
+                int g_ = color["g"];
+                int b_ = color["b"];
                 std::unique_ptr<IShape> shape(new Cylindre(Math::Point3D(x, y, z), r, c));
+                shape->setColor(r_, g_, b_);
                 shapes.insert(std::pair<int, std::unique_ptr<IShape>>(n, std::move(shape)));
                 std::cout << "add cylindre" << std::endl;
                 n++;

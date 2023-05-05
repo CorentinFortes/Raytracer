@@ -37,7 +37,7 @@ public:
     char axis;
 };
 
-class Cylindre : public IShape
+class Cylindre : public AShape
 {
 public:
     Cylindre(Math::Point3D center, double radius, char axis);

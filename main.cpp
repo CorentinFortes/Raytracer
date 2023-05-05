@@ -17,6 +17,7 @@ int main ()
     file << "P3" << std::endl;
     file << cam->width << " " << cam->height << std::endl;
     file << 255 << std::endl;
+    Directional light(Math::Vector3D(0, -1, 0), 0.2);
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
             double u = (double)x / (double)(cam->width - 1);
@@ -26,7 +27,7 @@ int main ()
             for (auto &shape : parser.shapes) {
                 t = 0;
                 if (shape.second->hits(r)) {
-                    shape.second->printColor(&file);
+                    shape.second->printColor(&file, light.color_pourcent(shape.second->normal(r)));
                     t = 1;
                     break;
                 }

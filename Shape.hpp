@@ -42,7 +42,7 @@ class Cylindre : public AShape
 public:
     Cylindre(Math::Point3D center, double radius, char axis);
     ~Cylindre() {};
-    bool hits(RayTracer::Ray) override;
+    double hits(RayTracer::Ray) override;
     Math::Point3D center;
     char axis;
     double radius;

@@ -26,9 +26,9 @@ int main ()
             std::map<int, double> inter;
             int t = 0, i = 0;
             for (auto &shape : parser.shapes) {
-                t = 0;
-                if (shape.second->hits(r)) {
-                    shape.second->printColor(&file, light.color_pourcent(shape.second->normal(r)));
+                if (shape.second->hits(r) != 0) {
+                    inter[i] = shape.second->hits(r);
+                    // std::cout << "inter[" << i << "] = " << inter[i] << " ";
                     t = 1;
                 }
                 i++;
@@ -43,7 +43,7 @@ int main ()
                         minKey = elem.first;
                     }
                 }
-                parser.shapes[minKey]->printColor(&file);
+                parser.shapes[minKey]->printColor(&file, 1);
             } else if (t == 0)
                 file << 150 << " " << 150 << " " << 255 << std::endl;
         }

@@ -9,7 +9,7 @@
 
 Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(radius) {}
 
-bool Sphere::hits(RayTracer::Ray ray)
+double Sphere::hits(RayTracer::Ray ray)
 {
     Math::Vector3D oc = ray.point - center;
     double a = ray.vector.dot(ray.vector);
@@ -17,44 +17,96 @@ bool Sphere::hits(RayTracer::Ray ray)
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
     if (discriminant < 0) {
-        return false;
+        return 0;
+    }
+    if (discriminant == 0) {
+        double t = -b / (2.0 * a);
+        double z = ray.point.z + t * ray.vector.z;
+        return z;
     }
     double rassine = sqrt(discriminant);
     double t1 = (-b - rassine) / (2.0 * a);
     double t2 = (-b + rassine) / (2.0 * a);
     if (t1 < 0.0 && t2 < 0.0) {
-        return false;
+        return 0;
     }
-    else
-        return true;
+    else {
+        if (t1 < t2) {
+            double z = ray.point.z + t1 * ray.vector.z;
+            return z;
+        } else if (t2 < t1) {
+            double z = ray.point.z + t2 * ray.vector.z;
+            return z;
+        }
+    }
+    return 0;
 }
 
 Plane::Plane(double y, char a) : coo(y), axis(a) {}
 
-bool Plane::hits(RayTracer::Ray ray)
+double Plane::hits(RayTracer::Ray ray)
 {
     if (axis == 'x') {
         double value = (coo - ray.point.x);
         if (std::abs(value) < std::abs(value + ray.vector.x))
-            return false;
-        else
-            return true;
+            return 0;
+        else {
+            Math::Point3D p1(coo, 100, 200);
+            Math::Point3D p2(coo, 200, -100);
+            Math::Point3D p3(coo, -30, -50);
+            Math::Vector3D v1 = p2 - p1;
+            Math::Vector3D v2 = p3 - p1;
+            Math::Vector3D normal = v1 * v2;
+            double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
+            normal = normal / n;
+            double t = normal.dot(p1 - ray.point) / normal.dot(ray.vector);
+            Math::Point3D i = ray.point + ray.vector * t;
+            if (i.z < 0)
+                i.z = i.z * -1;
+            return i.z;
+        }
     }
     if (axis == 'y') {
         double value = (coo - ray.point.y);
         if (std::abs(value) < std::abs(value + ray.vector.y))
-            return false;
-        else
-            return true;
+            return 0;
+        else {
+            Math::Point3D p1(100, coo, 200);
+            Math::Point3D p2(200, coo, -100);
+            Math::Point3D p3(-30, coo, -50);
+            Math::Vector3D v1 = p2 - p1;
+            Math::Vector3D v2 = p3 - p1;
+            Math::Vector3D normal = v1 * v2;
+            double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
+            normal = normal / n;
+            double t = normal.dot(p1 - ray.point) / normal.dot(ray.vector);
+            Math::Point3D i = ray.point + ray.vector * t;
+            if (i.z < 0)
+                i.z = i.z * -1;
+            return i.z;
+        }
     }
     if (axis == 'z') {
         double value = (coo - ray.point.z);
         if (std::abs(value) < std::abs(value + ray.vector.z))
-            return false;
-        else
-            return true;
+            return 0;
+        else {
+            Math::Point3D p1(100, 200, coo);
+            Math::Point3D p2(200, -100, coo);
+            Math::Point3D p3(-30, -50, coo);
+            Math::Vector3D v1 = p2 - p1;
+            Math::Vector3D v2 = p3 - p1;
+            Math::Vector3D normal = v1 * v2;
+            double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
+            normal = normal / n;
+            double t = normal.dot(p1 - ray.point) / normal.dot(ray.vector);
+            Math::Point3D i = ray.point + ray.vector * t;
+            if (i.z < 0)
+                i.z = i.z * -1;
+            return i.z;
+        }
     }
-    return false;
+    return 0;
 }
 
 Cylindre::Cylindre(Math::Point3D center, double radius, char ax) : center(center), radius(radius), axis(ax) {}

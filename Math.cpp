@@ -75,7 +75,11 @@ Math::Vector3D Math::Vector3D::operator-=(Math::Vector3D const& other)
 
 Math::Vector3D Math::Vector3D::operator*(Math::Vector3D const& other)
 {
-    return Math::Vector3D(x * other.x, y * other.y, z * other.z);
+    int nx, ny, nz;
+    nx = y * other.z - z * other.y;
+    ny = x * other.z - z * other.x;
+    nz = x * other.y - y * other.x;
+    return Math::Vector3D(nx, ny*(-1), nz);
 }
 
 Math::Vector3D Math::Vector3D::operator*=(Math::Vector3D const& other)
@@ -139,6 +143,11 @@ void Math::Vector3D::translate(Math::Vector3D v)
     x += v.x;
     y += v.y;
     z += v.z;
+}
+
+double Math::Vector3D::scalaire(Math::Vector3D v)
+{
+    return (x * v.x + y * v.y + z * v.z);
 }
 
 Math::Point3D::Point3D() : x(0), y(0), z(0) {}

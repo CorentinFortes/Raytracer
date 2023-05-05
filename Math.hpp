@@ -26,6 +26,7 @@ namespace Math {
         double length() const;
         double dot(Math::Vector3D const& other) const;
         void translate(Math::Vector3D v);
+        double scalaire(Math::Vector3D v);
 
         Vector3D& operator=(Math::Vector3D const& other);
         Vector3D& operator=(Math::Vector3D&& other);
@@ -42,6 +43,7 @@ namespace Math {
         Vector3D operator*=(double value);
         Vector3D operator/(double value);
         Vector3D operator/=(double value);
+
 
         double x;
         double y;

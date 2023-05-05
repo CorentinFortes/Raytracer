@@ -24,7 +24,7 @@ public:
     double radius;
     Sphere(Math::Point3D center, double radius);
     ~Sphere() {};
-    bool hits(RayTracer::Ray) override;
+    double hits(RayTracer::Ray) override;
 };
 
 class Plane : public AShape
@@ -32,7 +32,7 @@ class Plane : public AShape
 public:
     Plane(double y, char axis);
     ~Plane() {};
-    bool hits(RayTracer::Ray) override;
+    double hits(RayTracer::Ray) override;
     double coo;
     char axis;
 };

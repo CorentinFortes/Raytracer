@@ -23,16 +23,28 @@ int main ()
             double u = (double)x / (double)(cam->width - 1);
             double v = (double)y / (double)(cam->height - 1);
             RayTracer::Ray r = cam->ray(u, v);
-            int t = 0;
+            std::map<int, double> inter;
+            int t = 0, i = 0;
             for (auto &shape : parser.shapes) {
                 t = 0;
                 if (shape.second->hits(r)) {
                     shape.second->printColor(&file, light.color_pourcent(shape.second->normal(r)));
                     t = 1;
-                    break;
                 }
+                i++;
             }
-            if (t == 0)
+            // std::cout << std::endl;
+            if (t == 1) {
+                double minValue = std::numeric_limits<double>::max();
+                int minKey = -1;
+                for (const auto& elem : inter) {
+                    if (elem.second <= minValue) {
+                        minValue = elem.second;
+                        minKey = elem.first;
+                    }
+                }
+                parser.shapes[minKey]->printColor(&file);
+            } else if (t == 0)
                 file << 150 << " " << 150 << " " << 255 << std::endl;
         }
         file << std::endl;

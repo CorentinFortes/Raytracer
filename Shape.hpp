@@ -37,3 +37,13 @@ public:
     char axis;
 };
 
+class Cylindre : public IShape
+{
+public:
+    Cylindre(Math::Point3D center, double radius, char axis);
+    ~Cylindre() {};
+    bool hits(RayTracer::Ray) override;
+    Math::Point3D center;
+    char axis;
+    double radius;
+};

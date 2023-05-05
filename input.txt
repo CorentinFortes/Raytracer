@@ -14,6 +14,11 @@ shapes :
     planes = (
     { axis = "y"; position = -2.1; color = { r = 64; g = 64; b = 255; }; }
     ) ;
+
+    cylindres = (
+    #    { x = 1.0; y = 1.0; z = 20.0; radius = 1.0; axis = "y"; color = { r = 255; g = 64; b = 64; }; } ,
+        { x = 0.5; y = 0.5; z = 30.0; radius = 1.0; axis = "y"; color = { r = 255; g = 64; b = 64; }; }
+    )
 };
 lights :
 {

@@ -108,3 +108,41 @@ double Plane::hits(RayTracer::Ray ray)
     }
     return 0;
 }
+
+Cylindre::Cylindre(Math::Point3D center, double radius, char ax) : center(center), radius(radius), axis(ax) {}
+
+bool Cylindre::hits(RayTracer::Ray ray)
+{
+    if (axis == 'x') {
+        ray.vector.x = 0;
+        ray.point.x = 0;
+        center.x = 0;
+    }
+    if (axis == 'y') {
+        ray.vector.y = 0;
+        ray.point.y = 0;
+        center.y = 0;
+    }
+    if (axis == 'z') {
+        ray.vector.z = 0;
+        ray.point.z = 0;
+        center.z = 0;
+    }
+    Math::Vector3D oc = ray.point - center;
+    double a = ray.vector.dot(ray.vector);
+    double b = 2 * oc.dot(ray.vector);
+    double c = oc.dot(oc) - radius * radius;
+    double discriminant = b * b - 4 * a * c;
+    if (discriminant < 0) {
+        return false;
+    }
+    double rassine = sqrt(discriminant);
+    double t1 = (-b - rassine) / (2.0 * a);
+    double t2 = (-b + rassine) / (2.0 * a);
+    if (t1 < 0.0 && t2 < 0.0) {
+        return false;
+    }
+    else
+        return true;
+    return false;
+}

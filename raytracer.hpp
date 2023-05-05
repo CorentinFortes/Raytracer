@@ -19,8 +19,6 @@ namespace RayTracer
     public:
         Ray();
         Ray(Math::Vector3D vector, Math::Point3D point);
-        // Math::Vector3D is considered as an error type, why?
-        // because it's not a pointer, it's a reference
         Ray(Ray const& other); //cpy
         Ray(Ray&& other); //mv
 

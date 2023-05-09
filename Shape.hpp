@@ -25,6 +25,7 @@ public:
     Sphere(Math::Point3D center, double radius);
     ~Sphere() {};
     double hits(RayTracer::Ray) override;
+    Math::Vector3D normal(RayTracer::Ray l) override;
 };
 
 class Plane : public AShape
@@ -33,6 +34,7 @@ public:
     Plane(double y, char axis);
     ~Plane() {};
     double hits(RayTracer::Ray) override;
+    Math::Vector3D normal(RayTracer::Ray l) override;
     double coo;
     char axis;
 };
@@ -42,7 +44,8 @@ class Cylindre : public AShape
 public:
     Cylindre(Math::Point3D center, double radius, char axis);
     ~Cylindre() {};
-    bool hits(RayTracer::Ray) override;
+    double hits(RayTracer::Ray) override;
+    Math::Vector3D normal(RayTracer::Ray l) override;
     Math::Point3D center;
     char axis;
     double radius;

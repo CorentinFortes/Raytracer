@@ -54,3 +54,9 @@ RayTracer::Ray RayTracer::Camera::ray(double x, double y)
 {
     return RayTracer::Ray(Math::Vector3D(x + screen.origin.x - origin.x, y + screen.origin.y - origin.y, screen.origin.z - origin.z) , origin);
 }
+
+Math::Point3D RayTracer::Ray::get_point(double z, Math::Point3D origin)
+{
+    Math::Point3D point = Math::Point3D(vector.x * z + origin.x, vector.y * z + origin.y, vector.z * z + origin.z);
+    return point;
+}

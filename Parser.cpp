@@ -84,7 +84,6 @@ void Parser::getShape(std::string name)
                 std::unique_ptr<IShape> shape(new Cylindre(Math::Point3D(x, y, z), r, c));
                 shape->setColor(r_, g_, b_);
                 shapes.insert(std::pair<int, std::unique_ptr<IShape>>(n, std::move(shape)));
-                std::cout << "add cylindre" << std::endl;
                 n++;
             }
         }

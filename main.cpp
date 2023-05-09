@@ -17,7 +17,7 @@ int main ()
     file << "P3" << std::endl;
     file << cam->width << " " << cam->height << std::endl;
     file << 255 << std::endl;
-    Directional light(Math::Vector3D(0, -1, 0), 0.2);
+    Directional light(Math::Vector3D(0, 0, -1), 1);
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
             double u = (double)x / (double)(cam->width - 1);
@@ -26,14 +26,12 @@ int main ()
             std::map<int, double> inter;
             int t = 0, i = 0;
             for (auto &shape : parser.shapes) {
-                t = 0;
-                if (shape.second->hits(r)) {
-                    shape.second->printColor(&file, light.color_pourcent(shape.second->normal(r)));
+                if (shape.second->hits(r) != 0) {
+                    inter[i] = shape.second->hits(r);
                     t = 1;
                 }
                 i++;
             }
-            // std::cout << std::endl;
             if (t == 1) {
                 double minValue = std::numeric_limits<double>::max();
                 int minKey = -1;
@@ -43,7 +41,7 @@ int main ()
                         minKey = elem.first;
                     }
                 }
-                parser.shapes[minKey]->printColor(&file);
+                parser.shapes[minKey]->printColor(&file, light.color_pourcent(parser.shapes[minKey]->normal(r)));
             } else if (t == 0)
                 file << 150 << " " << 150 << " " << 255 << std::endl;
         }

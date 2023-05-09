@@ -16,8 +16,8 @@ namespace RayTracer {
 class IShape {
     public:
     virtual ~IShape() = default;
-    virtual bool hits(RayTracer::Ray) = 0;
+    virtual double hits(RayTracer::Ray) = 0;
     virtual void printColor(std::ofstream *, double p) = 0;
     virtual void setColor(int r, int g, int b) = 0;
-    // virtual void getnormal(Math::Point3D, Math::Point3D) = 0;
+    virtual Math::Vector3D normal(RayTracer::Ray l) = 0;
 };

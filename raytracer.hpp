@@ -28,6 +28,7 @@ namespace RayTracer
         ~Ray() {};
         Math::Vector3D vector;
         Math::Point3D point;
+        Math::Point3D get_point(double z, Math::Point3D origin);
     };
 
     class Camera

@@ -8,27 +8,21 @@ camera :
 shapes :
 {
     spheres = (
-    { x = -1.0; y = -1.0; z = 5.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } ,
-    { x = 0.0; y = 0.0; z = 100.0; radius = 10.0; color = { r = 64; g = 255; b = 64; }; }
+        { x = 1.0; y = 0.3; z = 8.0; radius = 3.0; color = { r = 64; g = 255; b = 64; }; } , #vert
+        { x = -1.0; y = -0.6; z = 6.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } #rouge
 ) ;
     planes = (
-    { axis = "y"; position = -2.1; color = { r = 64; g = 64; b = 255; }; } #bleu foncé
+    { axis = "y"; position = -2.1; color = { r = 64; g = 64; b = 255; }; }
     ) ;
 
     cylindres = (
-        { x = 1.0; y = 3.0; z = 6.05; radius = 1.0; axis = "y"; color = { r = 0; g = 255; b = 255; }; } #bleu clair
+        { x = 1.0; y = 3.0; z = 6.05; radius = 1.0; axis = "y"; color = { r = 0; g = 255; b = 255; }; }
     ) ;
-
-    cylindres = (
-        { x = 3.0; y = 3.0; z = 20.0; radius = 1.0; axis = "x"; color = { r = 1; g = 255; b = 0; }; }
-    )
 };
 lights :
 {
     ambient = 0.4; # Multiplier of ambient light
-    diffuse = 0.6; # Multiplier of diffuse light
-    point = (
-        { x = 400; y = 100; z = 500; }
-    ) ;
+    diffuse = 1.0; # Multiplier of diffuse light
+    point = { x = 0.0; y = -1.0; z = -1.0; } ;
     directional = () ;
 };

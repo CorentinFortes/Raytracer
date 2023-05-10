@@ -164,6 +164,7 @@ Math::Vector3D Plane::normal(RayTracer::Ray ray)
         Math::Vector3D normal = v1 * v2;
         double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
         normal = normal / n;
+        normal.y = normal.y * -1;
         return normal;
     }
     if (axis == 'y') {
@@ -175,6 +176,7 @@ Math::Vector3D Plane::normal(RayTracer::Ray ray)
         Math::Vector3D normal = v1 * v2;
         double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
         normal = normal / n;
+        normal.y = normal.y * -1;
         return normal;
     }
     if (axis == 'z') {
@@ -186,6 +188,7 @@ Math::Vector3D Plane::normal(RayTracer::Ray ray)
         Math::Vector3D normal = v1 * v2;
         double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
         normal = normal / n;
+        normal.y = normal.y * -1;
         return normal;
     }
     Math::Vector3D n(0, 0, 0);

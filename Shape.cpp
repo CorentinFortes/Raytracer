@@ -195,6 +195,7 @@ Math::Vector3D Plane::normal(RayTracer::Ray ray)
 Cylindre::Cylindre(Math::Point3D center, double radius, char ax) : center(center), radius(radius), axis(ax) {}
 
 double Cylindre::hits(RayTracer::Ray ray)
+double Cylindre::hits(RayTracer::Ray ray)
 {
     if (axis == 'x') {
         ray.vector.x = 0;
@@ -217,6 +218,12 @@ double Cylindre::hits(RayTracer::Ray ray)
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
     if (discriminant < 0) {
+        return 0;
+    }
+    if (discriminant == 0) {
+        double t = -b / (2.0 * a);
+        double z = ray.point.z + t * ray.vector.z;
+        return z;
         return 0;
     }
     if (discriminant == 0) {

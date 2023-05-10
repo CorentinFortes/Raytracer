@@ -41,7 +41,7 @@ int main ()
                         minKey = elem.first;
                     }
                 }
-                parser.shapes[minKey]->printColor(&file, light.color_pourcent(parser.shapes[minKey]->normal(r)));
+                parser.shapes[minKey]->printColor(&file, light.color_pourcent(parser.shapes[minKey]->normal(r), ));
             } else if (t == 0)
                 file << 150 << " " << 150 << " " << 255 << std::endl;
         }

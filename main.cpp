@@ -28,12 +28,10 @@ int main ()
             for (auto &shape : parser.shapes) {
                 if (shape.second->hits(r) != 0) {
                     inter[i] = shape.second->hits(r);
-                    // std::cout << "inter[" << i << "] = " << inter[i] << " ";
                     t = 1;
                 }
                 i++;
             }
-            // std::cout << std::endl;
             if (t == 1) {
                 double minValue = std::numeric_limits<double>::max();
                 int minKey = -1;

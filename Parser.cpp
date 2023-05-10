@@ -25,6 +25,17 @@ std::unique_ptr<RayTracer::Camera> Parser::getCamera()
     return cam;
 }
 
+std::unique_ptr<Directional> Parser::getLight()
+{
+    double ambient = cfg.lookup("lights.ambient");
+    double diffuse = cfg.lookup("lights.diffuse");
+    double light_x = cfg.lookup("lights.position.x");
+    double light_y = cfg.lookup("lights.position.y");
+    double light_z = cfg.lookup("lights.position.z");
+    std::unique_ptr<Directional> light(new Directional(Math::Vector3D(light_x, light_y, light_z), diffuse));
+    return light;
+}
+
 void Parser::getShape(std::string name)
 {
     std::string line;
@@ -84,7 +95,6 @@ void Parser::getShape(std::string name)
                 std::unique_ptr<IShape> shape(new Cylindre(Math::Point3D(x, y, z), r, c));
                 shape->setColor(r_, g_, b_);
                 shapes.insert(std::pair<int, std::unique_ptr<IShape>>(n, std::move(shape)));
-                std::cout << "add cylindre" << std::endl;
                 n++;
             }
         }

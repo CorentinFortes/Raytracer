@@ -25,6 +25,17 @@ std::unique_ptr<RayTracer::Camera> Parser::getCamera()
     return cam;
 }
 
+std::unique_ptr<Directional> Parser::getLight()
+{
+    double ambient = cfg.lookup("lights.ambient");
+    double diffuse = cfg.lookup("lights.diffuse");
+    double light_x = cfg.lookup("lights.position.x");
+    double light_y = cfg.lookup("lights.position.y");
+    double light_z = cfg.lookup("lights.position.z");
+    std::unique_ptr<Directional> light(new Directional(Math::Vector3D(light_x, light_y, light_z), diffuse));
+    return light;
+}
+
 void Parser::getShape(std::string name)
 {
     std::string line;

@@ -9,7 +9,7 @@
 
 Sphere::Sphere(Math::Point3D center, double radius) : center(center), radius(radius) {}
 
-double Sphere::hits(RayTracer::Ray ray)
+std::unique_ptr<Math::Point3D> Sphere::hits(RayTracer::Ray ray)
 {
     Math::Vector3D oc = ray.point - center;
     double a = ray.vector.dot(ray.vector);
@@ -17,29 +17,38 @@ double Sphere::hits(RayTracer::Ray ray)
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
     if (discriminant < 0) {
-        return 0;
+        return nullptr;
     }
     if (discriminant == 0) {
         double t = -b / (2.0 * a);
         double z = ray.point.z + t * ray.vector.z;
-        return z;
+        double x = ray.point.x + t * ray.vector.x;
+        double y = ray.point.y + t * ray.vector.y;
+        std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+        return pi;
     }
     double rassine = sqrt(discriminant);
     double t1 = (-b - rassine) / (2.0 * a);
     double t2 = (-b + rassine) / (2.0 * a);
     if (t1 < 0.0 && t2 < 0.0) {
-        return 0;
+        return nullptr;
     }
     else {
         if (t1 < t2) {
             double z = ray.point.z + t1 * ray.vector.z;
-            return z;
+            double x = ray.point.x + t1 * ray.vector.x;
+            double y = ray.point.y + t1 * ray.vector.y;
+            std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+            return pi;
         } else if (t2 < t1) {
             double z = ray.point.z + t2 * ray.vector.z;
-            return z;
+            double x = ray.point.x + t2 * ray.vector.x;
+            double y = ray.point.y + t2 * ray.vector.y;
+            std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+            return pi;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 Math::Vector3D Sphere::normal(RayTracer::Ray ray)
@@ -88,12 +97,12 @@ Math::Vector3D Sphere::normal(RayTracer::Ray ray)
 
 Plane::Plane(double y, char a) : coo(y), axis(a) {}
 
-double Plane::hits(RayTracer::Ray ray)
+std::unique_ptr<Math::Point3D> Plane::hits(RayTracer::Ray ray)
 {
     if (axis == 'x') {
         double value = (coo - ray.point.x);
         if (std::abs(value) < std::abs(value + ray.vector.x))
-            return 0;
+            return nullptr;
         else {
             Math::Point3D p1(coo, 100, 200);
             Math::Point3D p2(coo, 200, -100);
@@ -104,16 +113,19 @@ double Plane::hits(RayTracer::Ray ray)
             double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
             normal = normal / n;
             double t = normal.dot(p1 - ray.point) / normal.dot(ray.vector);
-            Math::Point3D i = ray.point + ray.vector * t;
-            if (i.z < 0)
-                i.z = i.z * -1;
-            return i.z;
+            double z = ray.point.z + t * ray.vector.z;
+            double x = ray.point.x + t * ray.vector.x;
+            double y = ray.point.y + t * ray.vector.y;
+            std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+            if (pi->z < 0)
+                pi->z = pi->z * -1;
+            return pi;
         }
     }
     if (axis == 'y') {
         double value = (coo - ray.point.y);
         if (std::abs(value) < std::abs(value + ray.vector.y))
-            return 0;
+            return nullptr;
         else {
             Math::Point3D p1(100, coo, 200);
             Math::Point3D p2(200, coo, -100);
@@ -124,16 +136,19 @@ double Plane::hits(RayTracer::Ray ray)
             double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
             normal = normal / n;
             double t = normal.dot(p1 - ray.point) / normal.dot(ray.vector);
-            Math::Point3D i = ray.point + ray.vector * t;
-            if (i.z < 0)
-                i.z = i.z * -1;
-            return i.z;
+            double z = ray.point.z + t * ray.vector.z;
+            double x = ray.point.x + t * ray.vector.x;
+            double y = ray.point.y + t * ray.vector.y;
+            std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+            if (pi->z < 0)
+                pi->z = pi->z * -1;
+            return pi;
         }
     }
     if (axis == 'z') {
         double value = (coo - ray.point.z);
         if (std::abs(value) < std::abs(value + ray.vector.z))
-            return 0;
+            return nullptr;
         else {
             Math::Point3D p1(100, 200, coo);
             Math::Point3D p2(200, -100, coo);
@@ -144,13 +159,16 @@ double Plane::hits(RayTracer::Ray ray)
             double n = sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
             normal = normal / n;
             double t = normal.dot(p1 - ray.point) / normal.dot(ray.vector);
-            Math::Point3D i = ray.point + ray.vector * t;
-            if (i.z < 0)
-                i.z = i.z * -1;
-            return i.z;
+            double z = ray.point.z + t * ray.vector.z;
+            double x = ray.point.x + t * ray.vector.x;
+            double y = ray.point.y + t * ray.vector.y;
+            std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+            if (pi->z < 0)
+                pi->z = pi->z * -1;
+            return pi;
         }
     }
-    return 0;
+    return NULL;
 }
 
 Math::Vector3D Plane::normal(RayTracer::Ray ray)
@@ -197,7 +215,7 @@ Math::Vector3D Plane::normal(RayTracer::Ray ray)
 
 Cylindre::Cylindre(Math::Point3D center, double radius, char ax) : center(center), radius(radius), axis(ax) {}
 
-double Cylindre::hits(RayTracer::Ray ray)
+std::unique_ptr<Math::Point3D>Cylindre::hits(RayTracer::Ray ray)
 {
     if (axis == 'x') {
         ray.vector.x = 0;
@@ -220,35 +238,38 @@ double Cylindre::hits(RayTracer::Ray ray)
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
     if (discriminant < 0) {
-        return 0;
+        return nullptr;
     }
     if (discriminant == 0) {
         double t = -b / (2.0 * a);
         double z = ray.point.z + t * ray.vector.z;
-        return z;
-        return 0;
-    }
-    if (discriminant == 0) {
-        double t = -b / (2.0 * a);
-        double z = ray.point.z + t * ray.vector.z;
-        return z;
+        double x = ray.point.x + t * ray.vector.x;
+        double y = ray.point.y + t * ray.vector.y;
+        std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+        return pi;
     }
     double rassine = sqrt(discriminant);
     double t1 = (-b - rassine) / (2.0 * a);
     double t2 = (-b + rassine) / (2.0 * a);
     if (t1 < 0.0 && t2 < 0.0) {
-        return 0;
+        return nullptr;
     }
     else {
         if (t1 < t2) {
             double z = ray.point.z + t1 * ray.vector.z;
-            return z;
+            double x = ray.point.x + t1 * ray.vector.x;
+            double y = ray.point.y + t1 * ray.vector.y;
+            std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+            return pi;
         } else if (t2 < t1) {
             double z = ray.point.z + t2 * ray.vector.z;
-            return z;
+            double x = ray.point.x + t2 * ray.vector.x;
+            double y = ray.point.y + t2 * ray.vector.y;
+            std::unique_ptr<Math::Point3D> pi = std::make_unique<Math::Point3D>(x, y, z);
+            return pi;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 Math::Vector3D Cylindre::normal(RayTracer::Ray ray)

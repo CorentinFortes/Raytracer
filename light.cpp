@@ -9,7 +9,7 @@
 
 Directional::Directional(Math::Vector3D l, double p) : light(l), pourcent(p) {}
 
-double Directional::color_pourcent(Math::Vector3D normal, Math::Point3D point)
+double Directional::color_pourcent(Math::Vector3D normal)
 {
     double cos = light.dot(normal);
     if (light.length() == 0 || normal.length() == 0)
@@ -18,13 +18,13 @@ double Directional::color_pourcent(Math::Vector3D normal, Math::Point3D point)
     return cos * pourcent;
 }
 
-Point::Point(Math::Point3D l, double p) : light(l), pourcent(p) {}
+// Point3D::Point3D(Math::Point3D l, double p) : light(l), pourcent(p) {}
 
-double Point::color_pourcent(Math::Vector3D normal, Math::Point3D point)
-{
-    double cos = light.dot(normal);
-    if (light.length() == 0 || normal.length() == 0)
-        return ((cos / 0.0001 * pourcent));
-    cos = cos / (light.length() * normal.length());
-    return cos * pourcent;
-}
+// double Point::color_pourcent(Math::Vector3D normal, Math::Point3D point)
+// {
+//     double cos = light.dot(normal);
+//     if (light.length() == 0 || normal.length() == 0)
+//         return ((cos / 0.0001 * pourcent));
+//     cos = cos / (light.length() * normal.length());
+//     return cos * pourcent;
+// }

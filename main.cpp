@@ -18,16 +18,15 @@ int main ()
     file << cam->width << " " << cam->height << std::endl;
     file << 255 << std::endl;
     std::unique_ptr<Directional> light = parser.getLight();
-    // Directional light(Math::Vector3D(0, -1, -1), 1);
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
             double u = (double)x / (double)(cam->width - 1);
             double v = (double)y / (double)(cam->height - 1);
             RayTracer::Ray r = cam->ray(u, v);
-            std::map<int, double> inter;
+            std::map<int, std::unique_ptr<Math::Point3D>> inter;
             int t = 0, i = 0;
             for (auto &shape : parser.shapes) {
-                if (shape.second->hits(r) != 0) {
+                if (shape.second->hits(r) != nullptr) {
                     inter[i] = shape.second->hits(r);
                     t = 1;
                 }
@@ -37,14 +36,14 @@ int main ()
                 double minValue = std::numeric_limits<double>::max();
                 int minKey = -1;
                 for (const auto& elem : inter) {
-                    if (elem.second <= minValue) {
-                        minValue = elem.second;
+                    if (elem.second->z <= minValue) {
+                        minValue = elem.second->z;
                         minKey = elem.first;
                     }
                 }
                 parser.shapes[minKey]->printColor(&file, light->color_pourcent(parser.shapes[minKey]->normal(r)));
             } else if (t == 0)
-                file << 255 << " " << 255 << " " << 255 << std::endl;
+                file << 0 << " " << 0 << " " << 0 << std::endl;
         }
         file << std::endl;
     }

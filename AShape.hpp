@@ -11,7 +11,7 @@ class AShape : public IShape {
     public:
     AShape() {};
     ~AShape() {};
-    virtual double hits(RayTracer::Ray) = 0;
+    virtual std::unique_ptr<Math::Point3D>hits(RayTracer::Ray) = 0;
     void printColor(std::ofstream *file, double pourcent);
     void setColor(int r, int g, int b);
     int color_r;

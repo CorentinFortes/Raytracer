@@ -16,7 +16,7 @@ namespace RayTracer {
 class IShape {
     public:
     virtual ~IShape() = default;
-    virtual double hits(RayTracer::Ray) = 0;
+    virtual std::unique_ptr<Math::Point3D> hits(RayTracer::Ray) = 0;
     virtual void printColor(std::ofstream *, double p) = 0;
     virtual void setColor(int r, int g, int b) = 0;
     virtual Math::Vector3D normal(RayTracer::Ray l) = 0;

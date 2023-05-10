@@ -195,7 +195,6 @@ Math::Vector3D Plane::normal(RayTracer::Ray ray)
 Cylindre::Cylindre(Math::Point3D center, double radius, char ax) : center(center), radius(radius), axis(ax) {}
 
 double Cylindre::hits(RayTracer::Ray ray)
-double Cylindre::hits(RayTracer::Ray ray)
 {
     if (axis == 'x') {
         ray.vector.x = 0;

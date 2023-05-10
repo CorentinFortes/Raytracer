@@ -17,7 +17,7 @@ int main ()
     file << "P3" << std::endl;
     file << cam->width << " " << cam->height << std::endl;
     file << 255 << std::endl;
-    Directional light(Math::Vector3D(0, 0, -1), 1);
+    Directional light(Math::Vector3D(2, 0, -1), 1);
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
             double u = (double)x / (double)(cam->width - 1);

@@ -37,12 +37,29 @@ int main ()
                 double minValue = std::numeric_limits<double>::max();
                 int minKey = -1;
                 for (const auto& elem : inter) {
-                    if (elem.second->z <= minValue) {
-                        minValue = elem.second->z;
+                    if (sqrt(pow(elem.second->x - cam->origin.x, 2) + pow(elem.second->y - cam->origin.y, 2)
+                         + pow(elem.second->z - cam->origin.z, 2)) <= minValue) {
+                        // minValue = elem.second->z;
+                        // faire par rapport au premier point
+                        minValue = sqrt(pow(elem.second->x - cam->origin.x, 2) + pow(elem.second->y - cam->origin.y, 2)
+                         + pow(elem.second->z - cam->origin.z, 2));
                         minKey = elem.first;
                     }
                 }
-                parser.shapes[minKey]->printColor(&file, light->color_pourcent(parser.shapes[minKey]->normal(r), *inter[minKey]));
+                double pourcent = light->color_pourcent(parser.shapes[minKey]->normal(r), *inter[minKey]);
+                RayTracer::Ray ray((light->light), *inter[minKey]);
+                double dd = 0;
+                for (auto &shape : parser.shapes) {
+                    if (shape.second->hits(ray) != nullptr && shape.first != minKey) {
+                        dd = 1;
+                    }
+                }
+                if (dd != 0) {
+                    parser.shapes[minKey]->printColor(&file, pourcent / 4);
+                } else {
+                    parser.shapes[minKey]->printColor(&file, pourcent);
+                }
+                // parser.shapes[minKey]->printColor(&file, light->color_pourcent(parser.shapes[minKey]->normal(r), *inter[minKey]));
             } else if (t == 0)
                 file << 0 << " " << 0 << " " << 0 << std::endl;
         }

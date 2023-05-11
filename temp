@@ -1,0 +1,25 @@
+double minValue = std::numeric_limits<double>::max();
+                int minKey = -1;
+                for (const auto& elem : inter) {
+                    if (elem.second->z <= minValue) {
+                        minValue = elem.second->z;
+                        minKey = elem.first;
+                    }
+                }
+                for (const auto& elem : inter) {
+                    double pourcent = light->color_pourcent(parser.shapes[minKey]->normal(r), *inter[minKey]);
+                    // Math::Point3D p = *elem.second;
+                    RayTracer::Ray ray((light->light * -1), *elem.second);
+                    double dd = 0;
+                    for (auto &shape : parser.shapes) {
+                        if (shape.second->hits(ray) != nullptr) {
+                            dd = 1;
+                        }
+                    }
+                    if (dd == 0) {
+                        parser.shapes[minKey]->printColor(&file, 0);
+                    } else {
+                        parser.shapes[minKey]->printColor(&file, pourcent);
+                    }
+                }
+                // parser.shapes[minKey]->printColor(&file, pourcent);

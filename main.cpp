@@ -18,6 +18,7 @@ int main ()
     file << cam->width << " " << cam->height << std::endl;
     file << 255 << std::endl;
     std::unique_ptr<Directional> light = parser.getLight();
+    // std::unique_ptr<Point> light(new Point(Math::Point3D(0, 1, 0), 1));
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
             double u = (double)x / (double)(cam->width - 1);
@@ -41,7 +42,7 @@ int main ()
                         minKey = elem.first;
                     }
                 }
-                parser.shapes[minKey]->printColor(&file, light->color_pourcent(parser.shapes[minKey]->normal(r)));
+                parser.shapes[minKey]->printColor(&file, light->color_pourcent(parser.shapes[minKey]->normal(r), *inter[minKey]));
             } else if (t == 0)
                 file << 0 << " " << 0 << " " << 0 << std::endl;
         }

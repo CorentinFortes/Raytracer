@@ -25,15 +25,28 @@ std::unique_ptr<RayTracer::Camera> Parser::getCamera()
     return cam;
 }
 
-std::unique_ptr<Directional> Parser::getLight()
+void Parser::getLight()
 {
-    double ambient = cfg.lookup("lights.ambient");
-    double diffuse = cfg.lookup("lights.diffuse");
-    double light_x = cfg.lookup("lights.point.x");
-    double light_y = cfg.lookup("lights.point.y");
-    double light_z = cfg.lookup("lights.point.z");
-    std::unique_ptr<Directional> light(new Directional(Math::Vector3D(light_x, light_y, light_z), diffuse));
-    return light;
+    const libconfig::Setting& ls = cfg.lookup("lights.light");
+    for (int i = 0; i < ls.getLength(); ++i) {
+        const libconfig::Setting& l = ls[i];
+        std::string type = l["type"];
+        if (type == "directional") {
+            double pourcent = l["percent"];
+            double x = l["x"];
+            double y = l["y"];
+            double z = l["z"];
+            std::unique_ptr<ILight> light(new Directional(Math::Vector3D(x, y, z), pourcent));
+            lights.insert(std::pair<int, std::unique_ptr<ILight>>(i, std::move(light)));
+        } else if (type == "point") {
+            double pourcent = l["percent"];
+            double x = l["x"];
+            double y = l["y"];
+            double z = l["z"];
+            std::unique_ptr<ILight> light(new Point(Math::Point3D(x, y, z), pourcent));
+            lights.insert(std::pair<int, std::unique_ptr<ILight>>(i, std::move(light)));
+        }
+    }
 }
 
 void Parser::getShape(std::string name)

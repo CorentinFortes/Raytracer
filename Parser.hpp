@@ -15,7 +15,7 @@ class Parser {
     Parser(std::string path);
     ~Parser() {};
     std::unique_ptr<RayTracer::Camera> getCamera();
-    std::unique_ptr<Directional> getLight();
+    void getLight();
     void getShape(std::string name);
     void parsing();
 
@@ -24,5 +24,6 @@ class Parser {
     int n = 0;
     std::string path;
     std::map<int, std::unique_ptr<IShape>> shapes;
+    std::map<int, std::unique_ptr<ILight>> lights;
 };
 

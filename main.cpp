@@ -11,13 +11,12 @@
 int main ()
 {
     Parser parser("input.txt");
-    parser.parsing();
+    parser.parsing(); parser.getLight();
     std::unique_ptr<RayTracer::Camera> cam = parser.getCamera();
     std::ofstream file("test.ppm");
     file << "P3" << std::endl;
     file << cam->width << " " << cam->height << std::endl;
     file << 255 << std::endl;
-    std::unique_ptr<Directional> light = parser.getLight();
     // std::unique_ptr<Point> light(new Point(Math::Point3D(0, 1, 0), 1));
     for (int y = 0; y < cam->height; y++) {
         for (int x = 0; x < cam->width; x++) {
@@ -61,7 +60,7 @@ int main ()
                 }
                 // parser.shapes[minKey]->printColor(&file, light->color_pourcent(parser.shapes[minKey]->normal(r), *inter[minKey]));
             } else if (t == 0)
-                file << 0 << " " << 0 << " " << 0 << std::endl;
+                file << 255 << " " << 255 << " " << 255 << std::endl;
         }
         file << std::endl;
     }

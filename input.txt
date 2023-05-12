@@ -9,7 +9,7 @@ shapes :
 {
     spheres = (
         { x = 1.0; y = 0.3; z = 8.0; radius = 3.0; color = { r = 64; g = 255; b = 64; }; } , #vert
-        { x = -1.0; y = -0.6; z = 6.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } #rouge
+        { x = -1.0; y = 2.6; z = 6.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } #rouge
 ) ;
     planes = (
     { axis = "y"; position = -2.1; color = { r = 64; g = 64; b = 255; }; }
@@ -21,8 +21,8 @@ shapes :
 };
 lights :
 {
-    ambient = 0.4; # Multiplier of ambient light
-    diffuse = 1.0; # Multiplier of diffuse light
-    point = { x = 0.0; y = -1.0; z = -1.0; } ;
-    directional = () ;
+    light = (
+        { type = "directional"; percent = 1.0; x = 0.0; y = -1.0; z = -1.0; } ,
+        { type = "point"; percent = 1.2; x = -10.0; y = -1.0; z = 2.0; }
+    ) ;
 };

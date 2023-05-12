@@ -17,7 +17,8 @@
 
 class ILight
 {
-public:
+    public:
+    virtual ~ILight() = default;
     virtual double color_pourcent(Math::Vector3D normal, Math::Point3D point) = 0;
 };
 

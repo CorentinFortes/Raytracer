@@ -9,7 +9,7 @@ shapes :
 {
     spheres = (
         { x = 1.0; y = 0.3; z = 8.0; radius = 3.0; color = { r = 64; g = 255; b = 64; }; } , #vert
-        { x = -1.0; y = 2.6; z = 6.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } #rouge
+        { x = -1.0; y = 0.6; z = 6.0; radius = 1.0; color = { r = 255; g = 64; b = 64; }; } #rouge
 ) ;
     planes = (
     { axis = "y"; position = -2.1; color = { r = 64; g = 64; b = 255; }; }

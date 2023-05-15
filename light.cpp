@@ -18,6 +18,11 @@ double Directional::color_pourcent(Math::Vector3D normal, Math::Point3D point)
     return cos * pourcent;
 }
 
+Math::Vector3D Directional::get_vector(Math::Point3D point)
+{
+    return light;
+}
+
 Point::Point(Math::Point3D l, double p) : light(l), pourcent(p) {}
 
 double Point::color_pourcent(Math::Vector3D normal, Math::Point3D point)
@@ -29,3 +34,9 @@ double Point::color_pourcent(Math::Vector3D normal, Math::Point3D point)
     cos = cos / (vector.length() * normal.length());
     return cos * pourcent;
 }
+
+Math::Vector3D Point::get_vector(Math::Point3D point)
+{
+    return light - point;
+}
+

@@ -20,6 +20,7 @@ class ILight
     public:
     virtual ~ILight() = default;
     virtual double color_pourcent(Math::Vector3D normal, Math::Point3D point) = 0;
+    virtual Math::Vector3D get_vector(Math::Point3D point) = 0;
 };
 
 class Directional : public ILight
@@ -30,6 +31,7 @@ public:
     Math::Vector3D light;
     double pourcent;
     double color_pourcent(Math::Vector3D light, Math::Point3D point) override;
+    Math::Vector3D get_vector(Math::Point3D point) override;
 };
 
 class Point : public ILight
@@ -40,4 +42,5 @@ public:
     Math::Point3D light;
     double pourcent;
     double color_pourcent(Math::Vector3D light, Math::Point3D point) override;
+    Math::Vector3D get_vector(Math::Point3D point) override;
 };
